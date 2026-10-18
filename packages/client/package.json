@@ -1,16 +1,60 @@
 {
   "name": "@stellar-marketpay/client",
   "version": "1.0.0",
-  "description": "Typed API client for Stellar MarketPay generated from OpenAPI specification",
-  "main": "dist/index.js",
-  "types": "dist/index.d.ts",
-  "scripts": {
-    "generate": "npx openapi-typescript ../../backend/docs/openapi.json -o src/schema.ts"
+  "description": "Typed, dependency-free TypeScript SDK for the Stellar MarketPay REST API (SEP-10 auth, jobs, applications, escrow).",
+  "license": "MIT",
+  "type": "module",
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js",
+      "require": "./dist/index.cjs"
+    },
+    "./package.json": "./package.json"
   },
-  "dependencies": {
-    "axios": "^1.20.0"
+  "files": [
+    "dist",
+    "README.md"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
+  "sideEffects": false,
+  "engines": {
+    "node": ">=18"
+  },
+  "keywords": [
+    "stellar",
+    "marketpay",
+    "sdk",
+    "typescript",
+    "openapi",
+    "sep-10",
+    "escrow"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Emmy123222/Stellar-MarketPay-.git",
+    "directory": "packages/client"
+  },
+  "scripts": {
+    "generate": "openapi-typescript ../../backend/docs/openapi.json -o src/schema.ts",
+    "build": "tsup",
+    "dev": "tsup --watch",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "prepublishOnly": "npm run build"
   },
   "devDependencies": {
-    "typescript": "^5.0.0"
+    "@types/node": "^20.14.0",
+    "@typescript-eslint/parser": "^8.71.2",
+    "openapi-typescript": "^7.4.1",
+    "tsup": "^8.3.0",
+    "typescript": "^5.6.3",
+    "vitest": "^2.1.8"
   }
 }

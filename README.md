@@ -215,7 +215,7 @@ For frontend development without a deployed Soroban contract:
 | Frontend unit snapshots | `cd frontend && npm test`                      | Jest + React Testing Library                     |
 | Update snapshots        | `cd frontend && npm run test:update-snapshots` | Regenerate when UI changes are intentional       |
 | Backend unit + coverage | `cd backend && npm test`                       | HTML report in `backend/coverage/`               |
-| Backend mutation tests | `cd backend && npm run stryker`                | Fails below the required 80% mutation score     |
+| Backend mutation tests  | `cd backend && npm run stryker`                | Fails below the required 80% mutation score      |
 | E2E (Playwright)        | `cd frontend && npm run test:e2e`              | Includes full client/freelancer marketplace flow |
 
 Deploy or upgrade the Soroban escrow contract using [docs/contract-deployment.md](docs/contract-deployment.md).
@@ -225,7 +225,7 @@ Deploy or upgrade the Soroban escrow contract using [docs/contract-deployment.md
 ## 📚 Documentation
 
 - **[Architecture Decision Records (ADRs)](docs/adr/README.md)** — Design decisions and rationale
-- **[API Client SDKs](docs/api-client-sdk.md)** — TypeScript, Python, and Go client libraries
+- **[API Client SDK](docs/api-client-sdk.md)** — typed TypeScript client library (`@stellar-marketpay/client`)
 - **[Troubleshooting Guide](docs/troubleshooting.md)** — Common issues and solutions
 - **[Production Deployment](docs/deployment-production.md)** — Deploy to AWS, GCP, or DigitalOcean
 - **[API Documentation](docs/api.md)** — Complete API reference
@@ -243,4 +243,3 @@ See [ROADMAP.md](ROADMAP.md) for planned features.
 ## 📄 License
 
 MIT — see [LICENSE](LICENSE)
-
