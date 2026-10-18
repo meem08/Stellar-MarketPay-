@@ -257,7 +257,7 @@ See [`packages/client/README.md`](../packages/client/README.md) for full usage d
 
 ## Roadmap
 
-Python and Go SDKs are planned but **not yet published**. Until they ship, use the REST API directly or the auto-generated codegen output under [`sdk/`](../sdk) (see below).
+Python and Go SDKs are planned but **not yet published**. Until they ship, use the REST API directly or the TypeScript SDK above; see [SDK Generation](#sdk-generation) for the legacy codegen output.
 
 ## SDK Generation
 

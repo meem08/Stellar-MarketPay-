@@ -52,7 +52,11 @@ jobs:
           # Retry a few times: GitHub may still be computing mergeability
           # right after the PR event fires.
           for attempt in 1 2 3 4 5; do
-            if gh pr merge --merge "$PR_URL"; then
+            # NOT --merge: the "Protect main branch" ruleset enforces
+            # required_linear_history, so merge commits are rejected with
+            # "Merge commits are not allowed on this repository". Squash
+            # produces a single linear commit and is allowed.
+            if gh pr merge --squash "$PR_URL"; then
               gh pr comment "$PR_URL" --body "🎉 Well done @$AUTHOR — great implementation! Your PR has been merged. Thank you for contributing to **Stellar Wave**! 🚀"
               echo "Merged $PR_URL"
               exit 0

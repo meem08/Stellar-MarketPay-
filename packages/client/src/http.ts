@@ -56,6 +56,19 @@ export interface RequestOptions {
 }
 
 const DEFAULT_BASE_URL = "https://api.stellarmarketpay.com";
+
+/**
+ * Strip trailing slashes from a URL without a regular expression.
+ *
+ * A `\/+$/` replace would be a polynomial-time regex on uncontrolled input
+ * (CodeQL `js/polynomial-redos`), so trim with a linear scan instead.
+ */
+function stripTrailingSlashes(value: string): string {
+  const slash = "/".charCodeAt(0);
+  let end = value.length;
+  while (end > 0 && value.charCodeAt(end - 1) === slash) end -= 1;
+  return end === value.length ? value : value.slice(0, end);
+}
 const MUTATING_METHODS = new Set(["POST", "PUT", "PATCH", "DELETE"]);
 
 export class HttpClient {
@@ -73,7 +86,7 @@ export class HttpClient {
   private csrfToken?: string;
 
   constructor(options: HttpClientOptions = {}) {
-    this.baseURL = (options.baseURL ?? DEFAULT_BASE_URL).replace(/\/+$/, "");
+    this.baseURL = stripTrailingSlashes(options.baseURL ?? DEFAULT_BASE_URL);
     this.timeout = options.timeout ?? 30_000;
     this.defaultHeaders = { ...options.headers };
     this.credentials = options.credentials;
